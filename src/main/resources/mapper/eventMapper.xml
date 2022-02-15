@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="event">
+	<select id="selectEventList" resultType="EventDTO" parameterType="EventDTO">
+	 	SELECT * FROM EVENT
+	 	<where>
+	 		<if test="eventCode != null and eventCode != ''">EVENT_CODE = #{eventCode}</if>
+	 		<if test="winnerYn != null and winnerYn != ''">WINNER_YN = #{winnerYn}</if>
+	 	</where>
+	 	ORDER BY EVENT_CODE DESC
+	 	<if test="row != 0"><![CDATA[ LIMIT #{offset}, #{row} ]]></if>
+	</select>
+	
+	<select id="selectEventCount" resultType="Integer" parameterType="EventDTO">
+	 	SELECT COUNT(*) FROM EVENT
+	 	<where>
+	 		<if test="eventCode =='' and eventCode==null"> EVENT_CODE = #{eventCode}</if>
+	 	</where>
+	</select>
+	
+	<update id="UpdateEventYn" parameterType="String">
+		UPDATE EVENT SET WINNER_YN = 'Y'
+		WHERE EVENT_CODE = #{eventCode}
+	</update>
+	
+	<insert id="insertEvent" parameterType="EventDTO">
+		INSERT INTO EVENT(EVENT_NAME, EVENT_DETAIL, EVENT_DATE, EVENT_END_DATE)
+		VALUES(#{eventName},#{eventDetail},#{eventDate},#{eventEndDate})
+	</insert>
+	
+
+	
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WinAppMem">
+	<select id="selectWinInfo" parameterType="String" resultType="WinAppMemDTO">
+		select a.*,m.member_id, m.member_name, m.member_pw, m.member_phone,w.goods from winner w, applicant a, member m
+		where w.lucky_number = a.lucky_number 
+		AND   w.event_code = a.event_code
+		AND  a.idMember = m.idMember
+		AND  w.event_code = #{eventCode}
+		order by w.goods
+	</select>
+</mapper>

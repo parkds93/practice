@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<configuration>
+	
+  	 <settings>
+   		<setting name="mapUnderscoreToCamelCase" value="true"/>
+   		<setting name="jdbcTypeForNull" value="NULL"/>
+	 </settings>
+	 	
+	<typeAliases>
+	<!-- DTO 및 VO alias 설정 -->
+		<typeAlias alias="MemberDTO" type="ds.practice.second.dto.MemberDTO"/>
+		<typeAlias alias="ApplicantDTO" type="ds.practice.second.dto.ApplicantDTO"/>
+		<typeAlias alias="AppMemDTO" type="ds.practice.second.dto.AppMemDTO"/>
+		<typeAlias alias="WinnerDTO" type="ds.practice.second.dto.WinnerDTO"/>
+		<typeAlias alias="EventDTO" type="ds.practice.second.dto.EventDTO"/>
+		<typeAlias alias="WinAppMemDTO" type="ds.practice.second.dto.WinAppMemDTO"/>
+	</typeAliases>
+</configuration>

@@ -46,7 +46,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
 </web-app>

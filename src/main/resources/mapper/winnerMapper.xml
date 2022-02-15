@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="winner">
+	<insert id="insertWinner" parameterType="WinnerDTO">
+	 	INSERT INTO WINNER(lucky_number,goods,event_code)
+	 	VALUES(#{luckyNumber},#{goods},#{eventCode})
+	</insert> 
+	
+	<select id="getWinnerYn" parameterType="String" resultType="String">
+		SELECT WINNER_YN FROM EVENT
+		WHERE EVENT_CODE =#{evnetCode}
+	</select>
+	
+</mapper>

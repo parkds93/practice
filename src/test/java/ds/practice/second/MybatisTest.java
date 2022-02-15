@@ -1,11 +1,14 @@
 package ds.practice.second;
 
+import java.sql.Connection;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,18 +18,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class MybatisTest {
     
 	@Autowired
-    private SqlSessionFactory sqlSessionFactory;
+    private SqlSessionTemplate sqlSessionTemplate;
 
     @Test
     public void testFactory(){
-        System.out.println(sqlSessionFactory);
+        System.out.println(sqlSessionTemplate);
     }
 
     @Test
     public void testSession() throws Exception{
         try{
-            SqlSession sqlSession = sqlSessionFactory.openSession();
-            System.out.println(sqlSession);
+            Connection connection = sqlSessionTemplate.getConnection();
+            System.out.println(connection);
         }catch (Exception e){
             e.printStackTrace();
         }

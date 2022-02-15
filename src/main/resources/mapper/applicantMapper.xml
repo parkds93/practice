@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="applicant">
+	<insert id="insertApplicant" parameterType="ApplicantDTO">
+	 	INSERT INTO APPLICANT(idMember,date,event_code,lucky_number) 
+	 	values(
+	 			#{idMember},
+	 			NOW(),
+	 			#{eventCode},
+	 			(SELECT A.* FROM(SELECT IFNULL(MAX(lucky_number), 0)+1 FROM APPLICANT WHERE EVENT_CODE = #{eventCode}) A)
+	 	)
+	</insert> 
+	
+	<select id="selectApplicantCount" parameterType="ApplicantDTO" resultType="Integer">
+		SELECT COUNT(*) FROM APPLICANT
+		<where>
+			<if test="idMember	!= null and idMember	!= ''">AND IDMEMBER = #{idMember}</if>
+			<if test="eventCode != null and eventCode 	!= ''">AND EVENT_CODE = #{eventCode}</if>
+		</where>		
+	</select>
+	
+	<select id="selectApplicantList" parameterType="ApplicantDTO" resultType="AppMemDTO">
+		SELECT A.EVENT_CODE,M.*,A.LUCKY_NUMBER FROM APPLICANT A, MEMBER M
+		WHERE A.IDMEMBER = M.IDMEMBER 
+		<if test="eventCode != null and eventCode != ''">AND EVENT_CODE = #{eventCode}</if>
+	</select>
+	
+	
+</mapper>
